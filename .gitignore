@@ -1,0 +1,6 @@
+gen_audio
+diarization_results
+whisper_api.py
+./git
+.idea
+**/__pycache__

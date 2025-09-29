@@ -1,0 +1,9 @@
+numpy
+transformers
+librosa
+noisereduce
+pyannote.audio
+torch
+scikit-learn
+matplotlib
+peft==0.16.0
