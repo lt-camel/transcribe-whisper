@@ -24,6 +24,7 @@ def load_jsonl_dataset(feature_extractor, tokenizer):
     print("======= 加载 本地 数据集 =========")
 
     # 加载数据集
+    # jsonl 格式：{"file_name": "datasets/audio/宫格字母/1.mp3", "sentence": "YQ61GN"}
     tl_dataset = load_dataset("json", data_files={
         # "train": "datasets/login_datasets.jsonl",
         # "test": "datasets/login_datasets_test.jsonl",
@@ -36,6 +37,7 @@ def load_jsonl_dataset(feature_extractor, tokenizer):
     print(f"验证数据集个数{len(tl_dataset["test"])}")
 
     # 预处理数据集
+    # data 格式 {"audio": {"path": "datasets/audio/宫格字母/1.mp3", "array": []}, "path": "datasets/audio/宫格字母/1.mp3", "sentence": "YQ61GN", "labels": [], "input_features": []}
     from datasets import Audio
     def prepare_dataset(data):
         audio = data["file_name"]
@@ -49,6 +51,7 @@ def load_jsonl_dataset(feature_extractor, tokenizer):
         data["labels"] = tokenizer(data["sentence"]).input_ids
         return data
 
+    # Audio 格式：{"path": "datasets/audio/宫格字母/1.mp3", "array": []}
     tl_dataset = tl_dataset.cast_column("file_name", Audio(sampling_rate=16000))
 
     # print(tl_dataset["train"][0])
